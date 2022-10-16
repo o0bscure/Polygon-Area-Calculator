@@ -1,4 +1,5 @@
 from turtle import width
+from unittest import result
 
 
 class Rectangle:
@@ -22,18 +23,39 @@ class Rectangle:
         return (self.width ** 2 + self.height ** 2) ** .5
     
     def get_picture(self):
-        return self
+        marker = self.width * "*"
+        lines = self.height
+        result = ""
+        for line in range(lines):
+            result = result + marker + "\n"
+        return result
     
     def __str__(self):
-        pass
+        return f"{self.__class__.__name__}(width={self.width}, height={self.height})"
 
 
+class Square(Rectangle):
+    def set_side(self,sides=str()):
+        self.sides = sides    
+
+    def __str__(self):
+        return f"{self.__class__.__name__}(sides={self.sides})"
 
 
+rect = Rectangle(10, 5)
+print(rect.get_area())
+rect.set_height(3)
+print(rect.get_perimeter())
+print(rect)
+print(rect.get_picture())
 
-    class Square:
-        pass
+sq = Square(10,9)
+print(sq.get_area())
+sq.set_side(4)
+print(sq.get_diagonal())
+print(sq)
+print(sq.get_picture())
 
-
-rect = Rectangle()
-print(type(rect))
+#rect.set_height(8)
+#rect.set_width(16)
+#print(rect.get_amount_inside(sq))
