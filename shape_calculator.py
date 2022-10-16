@@ -1,21 +1,31 @@
-from cmath import rect
+from turtle import width
 
 
 class Rectangle:
-    
-    def __init__(self,width,height):
+    def __init__(self,width=int(),height=int()):
         self.width = width
         self.height = height
     
-    def set_width(self):
-        pass
+    def set_width(self,width=int()):
+        self.width = width
     
-    def set_height(self):
-        pass
+    def set_height(self,height=int()):
+        self.height = height
     
     def get_area(self):
         return self.width * self.height
         
+    def get_perimeter(self):
+        return 2 * self.width + 2 * self.height
+    
+    def get_diagonal(self):
+        return (self.width ** 2 + self.height ** 2) ** .5
+    
+    def get_picture(self):
+        return self
+    
+    def __str__(self):
+        pass
 
 
 
@@ -25,5 +35,5 @@ class Rectangle:
         pass
 
 
-rect = Rectangle(3,6)
+rect = Rectangle()
 print(type(rect))
