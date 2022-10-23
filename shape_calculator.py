@@ -1,11 +1,9 @@
-from turtle import width
-from unittest import result
-
-
 class Rectangle:
+    object_list= []
     def __init__(self,width=int(),height=int()):
         self.width = width
         self.height = height
+        Rectangle.object_list.append(self)
     
     def set_width(self,width=int()):
         self.width = width
@@ -30,15 +28,28 @@ class Rectangle:
             result = result + marker + "\n"
         return result
     
-    def __str__(self):
+    def get_amount_inside(self,object):
+        if not object in Rectangle.object_list:
+            return f"{object} is not an object"
+        else:
+            pass
+    
+    def __repr__(self):
         return f"{self.__class__.__name__}(width={self.width}, height={self.height})"
 
 
 class Square(Rectangle):
+    def __init__(self, side_length):
+        self.width = side_length
+        self.height = side_length
+        Rectangle.object_list.append(self)
+    
     def set_side(self,sides=str()):
-        self.sides = sides    
+        self.sides = sides
+        self.width = sides
+        self.height = sides    
 
-    def __str__(self):
+    def __repr__(self):
         return f"{self.__class__.__name__}(sides={self.sides})"
 
 
@@ -49,13 +60,14 @@ print(rect.get_perimeter())
 print(rect)
 print(rect.get_picture())
 
-sq = Square(10,9)
+sq = Square(9)
 print(sq.get_area())
 sq.set_side(4)
 print(sq.get_diagonal())
 print(sq)
 print(sq.get_picture())
 
-#rect.set_height(8)
-#rect.set_width(16)
+rect.set_height(8)
+rect.set_width(16)
+print(Rectangle.object_list)
 #print(rect.get_amount_inside(sq))
