@@ -32,7 +32,7 @@ class Rectangle:
         if not object in Rectangle.object_list:
             return f"{object} is not an object"
         else:
-            pass
+            return self.get_area()/object.sides
     
     def __repr__(self):
         return f"{self.__class__.__name__}(width={self.width}, height={self.height})"
@@ -70,4 +70,4 @@ print(sq.get_picture())
 rect.set_height(8)
 rect.set_width(16)
 print(Rectangle.object_list)
-#print(rect.get_amount_inside(sq))
+print(rect.get_amount_inside(sq))
