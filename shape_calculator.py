@@ -1,12 +1,10 @@
 
 
 class Rectangle:
-    sides = 0
-    object_list= []
+    sides = int()
     def __init__(self,width=int(),height=int()):
         self.width = width
         self.height = height
-        Rectangle.object_list.append(self)
     
     def set_width(self,width=int()):
         self.width = width
@@ -36,20 +34,20 @@ class Rectangle:
                 result = result + marker + "\n"
             return result
         
-    def get_amount_inside(self,object):
-        if not object in Rectangle.object_list:
-            return f"{object} is not an object"
-        else:
-            if not object is self:
-                return self.get_area()/object.sides  
+    def get_amount_inside(self,shape=0):
+        #the returned amount of rectangles or squares should be integer
+        #if its a rectangle
+        if shape == self:
+            #if the hheight of the rectanle is an odd number
+            if self.height % 2 != 0:
+                return 0
             else:
-                if object == self:
-                    if self.height == object.height and self.width == object.width:
-                        return 1
-                    else:
-                        return 0 
-            #return self.get_area()/(self.get_perimeter()/2)
-            
+                return int(self.get_area()/(self.get_perimeter()/2))
+        elif shape == 0:
+            return int(self.get_area()/(self.get_perimeter()/2))
+        else:
+            print("this is a defined square")
+            return int(self.get_area()/shape.get_perimeter())
     
     def __repr__(self):
         return f"{self.__class__.__name__}(width={self.width}, height={self.height})"
@@ -60,7 +58,6 @@ class Square(Rectangle):
         self.width = side_length
         self.height = side_length
         self.sides = side_length
-        Rectangle.object_list.append(self)
     
     def set_side(self,sides=str()):
         self.sides = sides
@@ -70,5 +67,9 @@ class Square(Rectangle):
     def __repr__(self):
         return f"{self.__class__.__name__}(side={self.sides})"
 
-rect = Rectangle(15,10)
-print(rect.get_amount_inside(sq))
+rect = Rectangle(15, 10)
+print(rect.get_picture())
+print(rect.get_amount_inside())
+
+
+
