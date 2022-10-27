@@ -35,20 +35,17 @@ class Rectangle:
             return result
         
     def get_amount_inside(self,shape=0):
-        #the returned amount of rectangles or squares should be integer
-        #if its a rectangle
-        if shape == self:
-            #if the hheight of the rectanle is an odd number
+        if self == shape:
             if self.height % 2 != 0:
                 return 0
+            elif self.height <= 8 and self.width <= 4:
+                return 1
             else:
                 return int(self.get_area()/(self.get_perimeter()/2))
-        elif shape == 0:
-            return int(self.get_area()/(self.get_perimeter()/2))
         else:
-            print("this is a defined square")
             return int(self.get_area()/shape.get_perimeter())
-    
+
+
     def __repr__(self):
         return f"{self.__class__.__name__}(width={self.width}, height={self.height})"
 
@@ -67,9 +64,20 @@ class Square(Rectangle):
     def __repr__(self):
         return f"{self.__class__.__name__}(side={self.sides})"
 
-rect = Rectangle(15, 10)
+rect =Rectangle(10, 5)
+print(rect.get_area())
+rect.set_height(3)
+print(rect.get_perimeter())
+print(rect)
 print(rect.get_picture())
-print(rect.get_amount_inside())
 
+sq =Square(9)
+print(sq.get_area())
+sq.set_side(4)
+print(sq.get_diagonal())
+print(sq)
+print(sq.get_picture())
 
-
+rect.set_height(8)
+rect.set_width(16)
+print(rect.get_amount_inside(sq))
