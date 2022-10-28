@@ -33,8 +33,10 @@ class Rectangle:
             for line in range(lines):
                 result = result + marker + "\n"
             return result
-        
+    
+    #calculate how many shapes can fit inside a rectangle   
     def get_amount_inside(self,shape=0):
+        #checks if that sheo is a rectangle
         if self == shape:
             if self.height % 2 != 0:
                 return 0
@@ -45,7 +47,7 @@ class Rectangle:
         else:
             return int(self.get_area()/shape.get_perimeter())
 
-
+    #string representation of the object
     def __repr__(self):
         return f"{self.__class__.__name__}(width={self.width}, height={self.height})"
 
